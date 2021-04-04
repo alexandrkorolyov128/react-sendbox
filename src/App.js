@@ -1,5 +1,8 @@
 import React, {useState, useEffect  } from 'react';
 import Area from './Components/Area';
+import ThemeToggler from "./Components/ThemeToggler";
+
+export const ThemeContext = React.createContext()
 
 function App() {
 
@@ -9,7 +12,6 @@ function App() {
     const [mbco, setMbco] = useState( 10000)
     const [mbctb, setMbctb] = useState(60000)
     const [theme, setTheme] = useState('light')
-
 
     function manualMilageHandler(event) {
         event.preventDefault();
@@ -52,14 +54,9 @@ function App() {
                         <input type={"button"} className={"btn btn-success btn-block"} value={"Get"} id={"get_from_iot"}/>
                     </div>
                 </div>
-                <div className={"col-sm"}>
-                    <div className="form-check form-switch">
-                        <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault"  onChange={ changeTheme}/>
-                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault" >
-                                Dark theme
-                            </label>
-                    </div>
-                </div>
+
+                    <ThemeToggler toggle={changeTheme}/>
+
             </div>
             <p className={"text-center"}>Milage before:</p>
             <div className={"row py-2"}>
